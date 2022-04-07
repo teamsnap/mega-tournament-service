@@ -1,0 +1,194 @@
+openapi: 3.0.1
+info:
+  title: Mega Tournament Service
+  description: We need your help to save the tournament!
+  termsOfService: https://www.teamsnap.com/terms
+  contact:
+    email: platform@teamsnap.com
+  version: 0.0.1
+externalDocs:
+  description: Find out more about TeamSnap
+  url: https://www.teamsnap.com
+servers:
+  - url: http://app.localhost
+tags:
+  - name: Team
+    description: a team
+    externalDocs:
+      description: more
+      url: https://www.teamsnap.com
+  - name: Roster
+    description: a team roster
+    externalDocs:
+      description: more
+      url: https://www.teamsnap.com
+  - name: Player
+    description: a player
+    externalDocs:
+      description: more
+      url: https://www.teamsnap.com
+
+paths:
+  /team:
+    get:
+      tags:
+       - Team
+      summary: Get team data
+      description: Get all data for a team
+      operationId: getTeam
+      responses:
+        '200':
+          description: Succesfully got a team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '400':
+          description: Bad client request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Bad server response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /roster:
+    post:
+      tags:
+      - Roster
+      summary: Create a roster
+      description: Create a new team roster
+      operationId: createRoster
+      requestBody:
+        required: true
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '201':
+          description: Successfully created a roster
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '400':
+          description: Bad client request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Bad server response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+      x-codegen-request-body-name: body
+  /player/{uuid}:
+    get:
+      tags:
+        - Player
+      summary: Get a player
+      description: Get an existing player
+      operationId: getPlayer
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          description: Get an existing player by id
+          schema:
+            $ref: '#/components/schemas/Player'
+      responses:
+        '200':
+          description: Successful get for user account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '400':
+          description: Bad client request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Bad server response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /health:
+    get:
+      tags:
+        - internal
+      summary: API Health
+      description:  Overall health of the API
+      operationId: liveness
+      responses:
+        '201':
+          description: Foo
+        '400':
+          description: Bad client request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Bad server response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+components:
+  schemas:
+    Player:
+      description: Model containing user_account information.
+      type: object
+      properties:
+        UUID:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        username:
+          type: string
+          example: TeamSnap_user
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Smith
+        emails:
+          type: array
+          items:
+            example:
+              email_1: john_smith@example.com
+              email_2: john_son@example.com
+              email_3: john_wife@example.com
+        verified:
+          type: boolean
+          example: true
+        active:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      xml:
+        name: UserAccount
+    ValidationError:
+      type: object
+      properties:
+        field:
+          type: string
+          example: "name of field"
+        message:
+          type: string
+          example: "error message"
