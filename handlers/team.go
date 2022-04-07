@@ -11,7 +11,7 @@ func (c *Container) GetTeam(ctx echo.Context) error {
 }
 
 func (c *Container) CreateTeam(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, "Status OK")
+	return ctx.JSON(http.StatusCreated, "Status OK")
 }
 
 func (c *Container) UpdateTeam(ctx echo.Context) error {

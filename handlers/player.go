@@ -11,7 +11,7 @@ func (c *Container) GetPlayer(ctx echo.Context) error {
 }
 
 func (c *Container) CreatePlayer(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, "Status OK")
+	return ctx.JSON(http.StatusCreated, "Status OK")
 }
 
 func (c *Container) UpdatePlayer(ctx echo.Context) error {
