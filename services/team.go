@@ -2,26 +2,34 @@ package services
 
 import "context"
 
-type TeamService struct{}
+type TeamService interface {
+	Get(ctx context.Context) (*TeamResponse, error)
+	Create(ctx context.Context) (*TeamResponse, error)
+	Update(ctx context.Context) (*TeamResponse, error)
+	Delete(ctx context.Context) (*TeamResponse, error)
+}
+
+type teamService struct{}
+
 type TeamPayload interface{}
 type TeamResponse struct{}
 
 func NewTeamService() (TeamService, error) {
-	return TeamService{}, nil
+	return &teamService{}, nil
 }
 
-func (b *TeamService) Get(ctx context.Context) (*TeamService, error) {
+func (b *teamService) Get(ctx context.Context) (*TeamResponse, error) {
 	return nil, nil
 }
 
-func (b *TeamService) Create(ctx context.Context) (*TeamService, error) {
+func (b *teamService) Create(ctx context.Context) (*TeamResponse, error) {
 	return nil, nil
 }
 
-func (b *TeamService) Modify(ctx context.Context) (*TeamService, error) {
+func (b *teamService) Update(ctx context.Context) (*TeamResponse, error) {
 	return nil, nil
 }
 
-func (b *TeamService) Delete(ctx context.Context) (*TeamService, error) {
+func (b *teamService) Delete(ctx context.Context) (*TeamResponse, error) {
 	return nil, nil
 }

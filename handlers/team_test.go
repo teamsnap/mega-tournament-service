@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"mega-tournament-api/services"
+	"mega-tournament-api/mocks"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -20,10 +20,12 @@ type TeamTestSuite struct {
 }
 
 func (suite *TeamTestSuite) SetupTest() {
-	underTest, _ := services.NewTeamService()
-
 	e := echo.New()
-	h, _ := NewContainer(services.BracketService{}, services.PlayerService{}, underTest)
+	h, _ := NewContainer(
+		mocks.GetBracketMock(false),
+		mocks.GetPlayerMock(false),
+		mocks.GetTeamMock(false),
+	)
 
 	suite.service = h
 	suite.echo = e

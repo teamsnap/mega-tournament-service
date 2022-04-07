@@ -2,27 +2,34 @@ package services
 
 import "context"
 
-type BracketService struct{}
+type BracketService interface {
+	Get(ctx context.Context) (*BracketResponse, error)
+	Create(ctx context.Context) (*BracketResponse, error)
+	Update(ctx context.Context) (*BracketResponse, error)
+	Delete(ctx context.Context) (*BracketResponse, error)
+}
+
+type bracketService struct{}
 
 type BracketPayload struct{}
 type BracketResponse struct{}
 
 func NewBracketService() (BracketService, error) {
-	return BracketService{}, nil
+	return &bracketService{}, nil
 }
 
-func (b *BracketService) Get(ctx context.Context) (*BracketResponse, error) {
+func (b *bracketService) Get(ctx context.Context) (*BracketResponse, error) {
 	return nil, nil
 }
 
-func (b BracketService) Create(ctx context.Context) (*BracketResponse, error) {
+func (b bracketService) Create(ctx context.Context) (*BracketResponse, error) {
 	return nil, nil
 }
 
-func (b *BracketService) Modify(ctx context.Context) (*BracketResponse, error) {
+func (b *bracketService) Update(ctx context.Context) (*BracketResponse, error) {
 	return nil, nil
 }
 
-func (b *BracketService) Delete(ctx context.Context) (*BracketResponse, error) {
+func (b *bracketService) Delete(ctx context.Context) (*BracketResponse, error) {
 	return nil, nil
 }
