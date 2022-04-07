@@ -1,0 +1,24 @@
+{
+    "team": [
+        {
+            "name": "Red Hawks",
+            "players": {}
+        },
+        {
+            "name": "Hares",
+            "players": {}
+        },
+        {
+            "name": "Team Snappers",
+            "players": {}
+        },
+        {
+            "name": "Turtles",
+            "players": {}
+        },
+        {
+            "name": "Crickets",
+            "players": {}
+        }
+    ]
+}
