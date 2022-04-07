@@ -1,0 +1,32 @@
+version: '1'
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    container_name: mysql
+    # Override default sql_mode to disable the ONLY_FULL_GROUP_BY and STRICT_TRANS_TABLES settings
+    command: --sql_mode=NO_ENGINE_SUBSTITUTION --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --general-log=ON --innodb-use-native-aio=0
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+  api:
+    container_name: backend
+    build: ./
+    command: go build -o mega
+    environment:
+      DATABASE_URL: mysql://mysql:changeme@db
+    volumes:
+      - .:/myapp
+    depends_on:
+      - db
+  yaichi:
+    container_name: yaichi
+    image: mtsmfm/yaichi:1.5.0
+    ports:
+      - 80:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
