@@ -3,7 +3,7 @@ services:
   db:
     image: mysql:5.7
     platform: linux/amd64
-    container_name: mysql
+    container_name: mysql-mega
     # Override default sql_mode to disable the ONLY_FULL_GROUP_BY and STRICT_TRANS_TABLES settings
     command: --sql_mode=NO_ENGINE_SUBSTITUTION --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --general-log=ON --innodb-use-native-aio=0
     environment:
@@ -13,8 +13,8 @@ services:
       - mysql-data:/var/lib/mysql
     ports:
       - 3306:3306
-  api:
-    container_name: backend
+  app:
+    container_name: app
     build: ./
     command: go build -o mega
     environment:
@@ -30,3 +30,7 @@ services:
       - 80:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  mysql-data:
+    driver: local
