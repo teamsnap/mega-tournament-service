@@ -4,7 +4,9 @@ Greetings! This is the Mega Tournament Service, based loosely on the ever popula
 
 ## Your Task
 
-This Service is barely a skeleton that does _nothing_ useful. Your task is to make it do _anything_ useful. We are a curious group, so we're probably going to ask about what you did, and why you did it! This shouldn't be a stressful exercise. We also recognize that everyone has their own stuff going on in life. We don't expect you to spend huge amounts of time on this, so put into it what you feel comfortable with. When you are done, zip it up and send it back to us!
+This Service is barely a skeleton that does _nothing_ useful. Your task is to make it do _anything_ useful. You may find inspiration in the [openapi spec](spec.yml), but that's not a strict requirement by any means.
+Feel free to add or modify APIs as you deem necessary for the objective of making the service useful.    
+We are a curious group, so we're probably going to ask about what you did, and why you did it! This shouldn't be a stressful exercise. We also recognize that everyone has their own stuff going on in life. We don't expect you to spend huge amounts of time on this, so put into it what you feel comfortable with. When you are done, zip it up and send it back to us!
 
 
 ## Bootstrapping
@@ -22,4 +24,4 @@ This service is written in Go. To get it running locally, you'll need to head ov
 
 ### Navigating the code
 
-Everthing you want to focus on is in the handlers directory. 
+The handlers directory is a great place to start! 
