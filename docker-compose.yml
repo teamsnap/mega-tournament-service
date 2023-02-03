@@ -23,13 +23,8 @@ services:
       - .:/myapp
     depends_on:
       - db
-  yaichi:
-    container_name: yaichi
-    image: mtsmfm/yaichi:1.5.0
     ports:
-      - 80:3000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - 8080:8080
 
 volumes:
   mysql-data:
